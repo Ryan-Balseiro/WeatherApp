@@ -1,36 +1,27 @@
 package com.example.weatherapp
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.content.Context
+import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.weatherapp.view.TodayFragment
-import org.w3c.dom.Text
+import androidx.constraintlayout.widget.ConstraintSet
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        initViews()
-    }
+class CompoundHeader @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null
+) : LinearLayout(context, attrs) {
 
     var currentTempInt = 0
 
-    fun initViews(){
-        //header views
-        val settings: Button = findViewById(R.id.btn_settings)
-        val currentTemp: TextView = findViewById(R.id.tv_current_temp)
-        val location: TextView = findViewById(R.id.tv_location)
-        val condition: TextView = findViewById(R.id.tv_condition)
-        val headerContainer: LinearLayout = findViewById(R.id.header_container)
-
-        //fragment
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container,TodayFragment())
-            .commit()
+    init{
+        val view = LayoutInflater.from(context).inflate(
+            R.layout.header_layout,
+            this
+        )
+        setupUI(view)
+        updateDisplay(view)
     }
 
     private fun setupUI(view: View){
