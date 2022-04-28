@@ -48,6 +48,7 @@
                 android:id="@+id/rb_fahrenheit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="@string/fahrenheit" />
 
             <RadioButton
@@ -64,6 +65,12 @@
                 />
         </RadioGroup>
 
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

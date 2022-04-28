@@ -12,6 +12,9 @@ import com.example.weatherapp.view.TodayFragment
 
 class MainActivity : AppCompatActivity() {
 
+    var zipcode: String = ""
+    var units: String= ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         initViews()
     }
 
-    fun initViews() {
+    private fun initViews() {
 
         val headerContainer: LinearLayout = findViewById(R.id.header_container)
         HeaderManager(headerContainer).initViews()
@@ -27,6 +30,12 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, TodayFragment())
             .commit()
+        if(zipcode.isEmpty()){
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, TodayFragment())
+                .commit()
+        }
+        HeaderManager(headerContainer).showData(zipcode, units)
 
         //button
         val settings: Button = headerContainer.findViewById(R.id.btn_settings)
@@ -35,18 +44,19 @@ class MainActivity : AppCompatActivity() {
             var dialog = GetSettingsFragment()
             dialog.show(supportFragmentManager, "")
 
-            //temp: change background color
-//            ++testCounter
-//            if(testCounter == 1){
-//                changeBackground(75, "f")
-//            }
-//            else{
-//                testCounter = 0
-//                changeBackground(14, "f")
-//            }
         }//end onClickListener
 
     }//end initViews
+
+    fun setVariables(zip: String, TempUnits: String){
+        zipcode = zip
+        units = TempUnits
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initViews()
+    }
 
 }//end MainActivity
 

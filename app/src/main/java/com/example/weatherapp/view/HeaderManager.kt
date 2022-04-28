@@ -30,7 +30,6 @@ class HeaderManager(view: View) {
             ||(currentTemp < 16 && tempScale == "c")
             ||(currentTemp < 289 && tempScale == "k")){
             //display cool temp
-//            view.setBackgroundColor()
             headerContainer.setBackgroundResource(R.color.cold)
         }
         else{
@@ -40,5 +39,10 @@ class HeaderManager(view: View) {
 
         val ct = headerContainer.findViewById<TextView>(R.id.tv_current_temp)
         ct.text = currentTemp.toString()
+    }
+
+    fun showData(zip: String, tempUnits: String){
+//        location.text = zip
+//        currentTempView.text = tempUnits
     }
 }
