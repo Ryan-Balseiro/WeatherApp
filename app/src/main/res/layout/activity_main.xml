@@ -39,7 +39,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="2dp"
                 android:background="@drawable/ic_settings_white"
-                tools:text="settings" />
+                />
         </LinearLayout>
 
         <TextView
@@ -65,7 +65,7 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -73,18 +73,5 @@
         app:layout_constraintTop_toBottomOf="@+id/header_container"
         app:layout_constraintVertical_bias="0.100000024"
         tools:background="#AEAEAE" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container"
-        app:srcCompat="@drawable/_dk2bd"
-        android:contentDescription="meme to fill empty space"
-        />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

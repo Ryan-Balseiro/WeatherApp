@@ -23,21 +23,6 @@ class HeaderManager(view: View) {
         location = view.findViewById(R.id.tv_location)
         condition = view.findViewById(R.id.tv_condition)
         headerContainer = view.findViewById(R.id.header_container)
-        val settings: Button = view.findViewById(R.id.btn_settings)
-        settings.setOnClickListener{
-            //open settings fragment
-
-            //temp: change background color
-            ++testCounter
-            if(testCounter == 1){
-                changeBackground(75, "f")
-            }
-            else{
-                testCounter = 0
-                changeBackground(14, "f")
-            }
-
-        }
     }
     private fun changeBackground(currentTemp: Int, tempScale: String) {
         //valid temp scales: "f" = fahrenheit / "c" = celsius / "k" = kelvin
