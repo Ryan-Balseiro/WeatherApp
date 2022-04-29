@@ -13,14 +13,17 @@ class HeaderManager(view: View) {
 
     val view: View = view
     lateinit var headerContainer: LinearLayout
-    lateinit var currentTempView: TextView
-    lateinit var location: TextView
     lateinit var condition: TextView
+//    lateinit var currentTempView: TextView
+//    lateinit var location: TextView
 
     fun initViews(){
         //header views
-        currentTempView = view.findViewById(R.id.tv_current_temp)
-        location = view.findViewById(R.id.tv_location)
+        var currentTempView: TextView = view.findViewById(R.id.tv_current_temp)
+        var location:TextView = view.findViewById(R.id.tv_location)
+//        currentTempView = view.findViewById(R.id.tv_current_temp)
+//        location = view.findViewById(R.id.tv_location)
+
         condition = view.findViewById(R.id.tv_condition)
         headerContainer = view.findViewById(R.id.header_container)
     }
@@ -41,8 +44,4 @@ class HeaderManager(view: View) {
         ct.text = currentTemp.toString()
     }
 
-    fun showData(zip: String, tempUnits: String){
-//        location.text = zip
-//        currentTempView.text = tempUnits
-    }
 }

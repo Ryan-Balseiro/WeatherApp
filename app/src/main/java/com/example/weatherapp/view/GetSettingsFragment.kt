@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.example.weatherapp.MainActivity
@@ -29,11 +30,15 @@ class GetSettingsFragment: DialogFragment() {
             container,
             false
         )
+
         initViews(view)
         return view
     }
 
     private fun initViews(view: View) {
+//        view.findViewById<CardView>(R.id.cardView).setOnClickListener{
+//            //do nothing. this prevents user from being able to click off the dialog
+//        }
         view.findViewById<Button>(R.id.btn_submit).setOnClickListener {
             zip = view.findViewById<EditText>(R.id.et_zip).text.toString()
             when (true) {
@@ -44,12 +49,12 @@ class GetSettingsFragment: DialogFragment() {
                     tempUnits = "f"
                 }
             }
-            if (zip.isNotEmpty()) {
+            if (zip.isNotEmpty() && zip.length == 5) {
                 MainActivity().setVariables(zip, tempUnits)
                 dismiss()
             }
             else {
-                Toast.makeText(context, "Please enter a zip code", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Please enter a valid zip code", Toast.LENGTH_SHORT).show()
             }
         }
     }
