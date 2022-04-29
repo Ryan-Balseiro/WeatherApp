@@ -14,8 +14,6 @@ class HeaderManager(view: View) {
     val view: View = view
     lateinit var headerContainer: LinearLayout
     lateinit var condition: TextView
-//    lateinit var currentTempView: TextView
-//    lateinit var location: TextView
 
     fun initViews(){
         //header views

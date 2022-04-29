@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.example.weatherapp.MainActivity
 import com.example.weatherapp.R
+import com.example.weatherapp.viewmodel.MyViewModel
 
 class GetSettingsFragment: DialogFragment() {
 
@@ -50,7 +51,10 @@ class GetSettingsFragment: DialogFragment() {
                 }
             }
             if (zip.isNotEmpty() && zip.length == 5) {
-                MainActivity().setVariables(zip, tempUnits)
+                //save data and dismiss fragment
+                MyViewModel().storeData(zip, tempUnits)
+                MainActivity().setData()
+                //MainActivity().setVariables(zip, tempUnits)
                 dismiss()
             }
             else {

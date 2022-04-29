@@ -74,4 +74,14 @@
         app:layout_constraintVertical_bias="0.100000024"
         tools:background="#AEAEAE" />
 
+    <Button
+        android:id="@+id/btn_testData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

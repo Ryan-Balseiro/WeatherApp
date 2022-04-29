@@ -5,16 +5,23 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.view.GetSettingsFragment
 import com.example.weatherapp.view.HeaderManager
 import com.example.weatherapp.view.TodayFragment
+import com.example.weatherapp.viewmodel.MyViewModel
+
+var zipcode = ""
+var units = ""
 
 class MainActivity : AppCompatActivity() {
 
-    var zipcode: String = ""
-    var units: String= ""
+//    var zipcode: String = ""
+//    var units: String= ""
+//    lateinit var zipcode: String
+//    lateinit var units: String
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +35,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-
         val headerContainer: LinearLayout = findViewById(R.id.header_container)
         HeaderManager(headerContainer).initViews()
         //fragment
@@ -42,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             dialog.show(supportFragmentManager, "")
         }
         //HeaderManager(headerContainer).showData(zipcode, units)
-        showData()
+//        showData()
 
         //button
         val settings: Button = headerContainer.findViewById(R.id.btn_settings)
@@ -54,20 +60,21 @@ class MainActivity : AppCompatActivity() {
 
         }//end onClickListener
 
+            //test button to show settings data
+        binding.btnTestData.setOnClickListener{
+            showData()
+        }
+
     }//end initViews
 
-    fun setVariables(zip: String, TempUnits: String){
-        zipcode = zip
-        units = TempUnits
+    fun showData(){
+        Toast.makeText(this, "zipcode = $zipcode", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "units = $units", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onResume() {
-        super.onResume()
-        //initViews()
-    }
-    fun showData(){
-        binding.tvLocation.text = zipcode
-        binding.tvCurrentTemp.text = units
+    fun setData(){
+        zipcode = MyViewModel().getZip()
+        units = MyViewModel().getUnits()
     }
 
 }//end MainActivity
