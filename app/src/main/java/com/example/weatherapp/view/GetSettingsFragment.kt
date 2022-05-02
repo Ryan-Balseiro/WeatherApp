@@ -43,9 +43,9 @@ class GetSettingsFragment: DialogFragment() {
         view.findViewById<Button>(R.id.btn_submit).setOnClickListener {
             zip = view.findViewById<EditText>(R.id.et_zip).text.toString()
             when (true) {
-                view.findViewById<RadioButton>(R.id.rb_fahrenheit).isChecked -> tempUnits = "f"
-                view.findViewById<RadioButton>(R.id.rb_celsius).isChecked -> tempUnits = "c"
-                view.findViewById<RadioButton>(R.id.rb_kelvin).isChecked -> tempUnits = "k"
+                view.findViewById<RadioButton>(R.id.rb_fahrenheit).isChecked -> tempUnits = "imperial"
+                view.findViewById<RadioButton>(R.id.rb_celsius).isChecked -> tempUnits = "metric"
+                view.findViewById<RadioButton>(R.id.rb_kelvin).isChecked -> tempUnits = "kelvin"
                 else -> {
                     tempUnits = "f"
                 }
@@ -54,7 +54,6 @@ class GetSettingsFragment: DialogFragment() {
                 //save data and dismiss fragment
                 MyViewModel().storeData(zip, tempUnits)
                 MainActivity().setData()
-                //MainActivity().setVariables(zip, tempUnits)
                 dismiss()
             }
             else {

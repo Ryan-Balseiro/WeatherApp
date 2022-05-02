@@ -1,4 +1,4 @@
-package com.example.weatherapp
+package com.example.weatherapp.toberemoved
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintSet
+import com.example.weatherapp.R
 
 class CompoundHeader @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
