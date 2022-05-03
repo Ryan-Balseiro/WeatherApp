@@ -1,5 +1,6 @@
 package com.example.weatherapp.model.remote
 
+import com.example.weatherapp.model.ForecastData
 import com.example.weatherapp.model.WeatherData
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -21,7 +22,7 @@ interface WeatherApi {
         @Query("zip") zip_code: String,
         @Query("units") units: String,
         @Query("appid") api_key: String = API_KEY,
-    ) : Call<WeatherData>
+    ) : Call<ForecastData>
 
     companion object{
         const val BASE_URL = "https://api.openweathermap.org/"
