@@ -1,16 +1,20 @@
 package com.example.weatherapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.model.WeatherData
 import com.example.weatherapp.model.remote.WeatherApi
 import com.example.weatherapp.view.*
 import com.example.weatherapp.viewmodel.MyViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,46 +24,45 @@ var units = ""
 private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {//end MainActivity
 
-    //    var zipcode: String = ""
-//    var units: String= ""
-//    lateinit var zipcode: String
-//    lateinit var units: String
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        binding = ActivityMainBinding.inflate(
-            layoutInflater
-        )
-        setContentView(binding.root)
+
         initViews()
     }
 
     private fun initViews() {
-//        val headerContainer: LinearLayout = findViewById(R.id.header_container)
-        HeaderManager()
+        binding = ActivityMainBinding.inflate(
+            layoutInflater
+        )
+        setContentView(binding.root)
+//        HeaderManager()
 
         //fragment
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, TodayFragment())
             .commit()
 
+        //auto-open settings if there is no saved zipcode
         if(zipcode.isEmpty()){
             var dialog = GetSettingsFragment()
             dialog.isCancelable = false
             dialog.show(supportFragmentManager, "")
-        }
-        //HeaderManager(headerContainer).showData(zipcode, units)
-//        showData()
 
+
+        }
         //button
-        //val settings: Button = headerContainer.findViewById(R.id.btn_settings)
         binding.btnSettings.setOnClickListener{
             //open settings fragment
             var dialog = GetSettingsFragment()
             dialog.isCancelable = false
             dialog.show(supportFragmentManager, "")
+            while(dialog.isVisible){
+                Thread.sleep(500)
+                Log.d(TAG, "initViews: while loop is working")
+            }
 
         }//end onClickListener
 
@@ -68,9 +71,6 @@ class MainActivity : AppCompatActivity() {//end MainActivity
             showData()
             getData(zipcode, units,"51faa06e6dee65d70fc78d57d0a2004a")
         }
-//        WeatherAdapter().getData(zipcode, units,"51faa06e6dee65d70fc78d57d0a2004a")
-        //WeatherAdapter().getData("30008", "imperial","51faa06e6dee65d70fc78d57d0a2004a")
-        //getData("33176", "imperial","51faa06e6dee65d70fc78d57d0a2004a")
     }//end initViews
 
     fun showData(){
@@ -90,11 +90,11 @@ class MainActivity : AppCompatActivity() {//end MainActivity
     }
 
     private fun getUnit(units: String): String {
-        when(units){
-            "imperial" -> return "°F"
-            "metric" -> return "°C"
-            "kelvin" -> return "°K"
-            else -> return "°"
+        return when(units){
+            "imperial" -> "°F"
+            "metric" -> "°C"
+            "kelvin" -> "°K"
+            else -> "°"
         }
     }
 
@@ -126,6 +126,12 @@ class MainActivity : AppCompatActivity() {//end MainActivity
                     }
                 }
             })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "test: onResume: on resume triggered")
+        getData(zipcode, units,"51faa06e6dee65d70fc78d57d0a2004a")
     }
 }
 

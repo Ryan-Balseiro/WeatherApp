@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2145" />
         <entry key="app/src/main/res/drawable/ic_settings_white.xml" value="0.2145" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_test.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/fragment_settings_layout.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/header_layout.xml" value="0.22509057971014493" />

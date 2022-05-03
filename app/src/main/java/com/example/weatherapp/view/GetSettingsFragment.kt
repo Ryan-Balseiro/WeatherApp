@@ -1,5 +1,6 @@
 package com.example.weatherapp.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
-import com.example.weatherapp.MainActivity
-import com.example.weatherapp.R
+import com.example.weatherapp.*
 import com.example.weatherapp.viewmodel.MyViewModel
 
 class GetSettingsFragment: DialogFragment() {
@@ -31,7 +29,7 @@ class GetSettingsFragment: DialogFragment() {
             container,
             false
         )
-
+        //sets var to true
         initViews(view)
         return view
     }
@@ -55,6 +53,9 @@ class GetSettingsFragment: DialogFragment() {
                 MyViewModel().storeData(zip, tempUnits)
                 MainActivity().setData()
                 dismiss()
+                val intent = Intent(this@GetSettingsFragment.context, TempActivity::class.java)
+                startActivity(intent)
+
             }
             else {
                 Toast.makeText(context, "Please enter a valid zip code", Toast.LENGTH_SHORT).show()
