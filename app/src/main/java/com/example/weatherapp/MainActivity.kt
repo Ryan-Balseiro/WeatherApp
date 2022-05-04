@@ -65,18 +65,7 @@ class MainActivity : AppCompatActivity() {//end MainActivity
             }
 
         }//end onClickListener
-
-            //test button to show settings data
-        binding.btnTestData.setOnClickListener{
-            showData()
-            getData(zipcode, units,"51faa06e6dee65d70fc78d57d0a2004a")
-        }
     }//end initViews
-
-    fun showData(){
-        Toast.makeText(this, "zipcode = $zipcode", Toast.LENGTH_SHORT).show()
-        Toast.makeText(this, "units = $units", Toast.LENGTH_SHORT).show()
-    }
 
     fun setData(){
         zipcode = MyViewModel().getZip()
